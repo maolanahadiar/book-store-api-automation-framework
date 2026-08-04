@@ -11,13 +11,16 @@ on:
       - master
 
   workflow_dispatch:
-
+    
   schedule:
     # simulate running scheduler
     - cron: '0 18 * * *'
 
 env:
   CI: true
+
+permissions:
+  contents: write
 
 jobs:
 
@@ -68,6 +71,13 @@ jobs:
           -o reports/allure-report \
           --clean
 
+      - name: Deploy Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: reports/allure-report
+          
       - name: Upload Allure Report
         if: always()
         uses: actions/upload-artifact@v4
