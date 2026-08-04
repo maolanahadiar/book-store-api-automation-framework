@@ -1,1 +1,1 @@
-{"reportName":"API Automation Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":5,"unknown":0,"total":5},"time":{"start":1785847439858,"stop":1785847442300,"duration":2442,"minDuration":180,"maxDuration":786,"sumDuration":2423}}
+{"reportName":"API Automation Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":5,"unknown":0,"total":5},"time":{"start":1785849027653,"stop":1785849035009,"duration":7356,"minDuration":189,"maxDuration":3696,"sumDuration":7337}}

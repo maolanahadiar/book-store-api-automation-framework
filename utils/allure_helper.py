@@ -14,7 +14,7 @@ class AllureHelper:
         os.makedirs(results_dir, exist_ok=True)
 
         environment = {
-            "Project": "Demoqa Book Store API",
+            "Project": "Demoqa Bookstore API",
             "Environment": settings.ENVIRONMENT,
             "OS": platform.platform(),
             "Python": sys.version.split()[0],
