@@ -15,23 +15,6 @@ def pytest_sessionstart(session):
         ALLURE_REPORT_DIR,
     )
     
-def pytest_sessionfinish(session, exitstatus):
-    subprocess.run([
-        "allure",
-        "generate",
-        "reports/allure-results",
-        "-o",
-        "reports/allure-report",
-        "--clean",
-    ], check=True)
-
-    if os.getenv("CI", "").lower() != "true":
-        subprocess.Popen([
-            "allure",
-            "open",
-            "reports/allure-report",
-        ])    
-
 @pytest.fixture(scope="session")
 def book_service():
     return BookStoreService()
