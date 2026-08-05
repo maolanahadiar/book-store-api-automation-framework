@@ -1,0 +1,18 @@
+INFO     BookStoreService:api_client.py:25 ================================================================================
+INFO     BookStoreService:api_client.py:26 DELETE https://demoqa.com/BookStore/v1/Book
+INFO     BookStoreService:api_client.py:35 Request Body:
+{
+    "userId": "90fbd2da-eee5-416e-9219-ce9cac8727e2",
+    "isbn": "9781449325862"
+}
+INFO     BookStoreService:api_client.py:41 Headers:
+{
+    "Authorization": "Bearer sdhfj23h2j32hjasjd23adsasdj23234j"
+}
+INFO     BookStoreService:api_client.py:54 Status Code : 401
+INFO     BookStoreService:api_client.py:57 Response Body:
+{
+    "code": "1200",
+    "message": "User not authorized!"
+}
+INFO     BookStoreService:api_client.py:67 ================================================================================
