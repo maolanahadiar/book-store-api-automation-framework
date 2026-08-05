@@ -2,6 +2,7 @@ import json
 import os
 import platform
 import shutil
+import subprocess
 import sys
 from config import settings
 
@@ -30,7 +31,7 @@ class AllureHelper:
 
     @staticmethod
     def create_executor(results_dir):
-        """Create executor metadata for local or CI execution"""
+        """Create executor metadata for local and CI execution"""
         
         os.makedirs(results_dir, exist_ok=True)
 
@@ -45,7 +46,7 @@ class AllureHelper:
                     f"{os.getenv('GITHUB_REPOSITORY', '')}/actions/runs/"
                     f"{os.getenv('GITHUB_RUN_ID', '')}"
                 ),
-                "reportName": "API Automation Report",
+                "reportName": "Bookstore API Automation Report",
             }
         else:
             executor = {
@@ -53,7 +54,7 @@ class AllureHelper:
                 "type": "local",
                 "buildName": "Manual Execution",
                 "buildOrder": 1,
-                "reportName": "API Automation Report",
+                "reportName": "Bookstore API Automation Report",
             }
 
         with open(
@@ -76,3 +77,28 @@ class AllureHelper:
                 destination,
                 dirs_exist_ok=True,
             )
+
+    @staticmethod
+    def generate_report(results_dir, report_dir):
+        subprocess.run(
+            [
+                "allure",
+                "generate",
+                results_dir,
+                "-o",
+                report_dir,
+                "--clean",
+            ],
+            check=True,
+        )
+
+    @staticmethod
+    def open_report(report_dir):
+        subprocess.run(
+            [
+                "allure",
+                "open",
+                report_dir,
+            ],
+            check=True,
+        )

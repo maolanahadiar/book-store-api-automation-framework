@@ -3,7 +3,7 @@ from headers.headers import auth_header
 from config.settings import BOOKS_URL, BOOK_DETAIL_URL
 from payloads.bookstore_payload import (
     adding_new_book_payload,
-    isbn_book_payload,
+    specific_book_payload,
 )
 
 class BookStoreService(ApiClient):
@@ -16,7 +16,7 @@ class BookStoreService(ApiClient):
         )
 
     def get_book_by_isbn(self, isbn):
-        """Retrieve spesific book by using ISBN"""
+        """Retrieve specific book by using ISBN"""
         
         return self.get(
             url=BOOK_DETAIL_URL,
@@ -39,7 +39,7 @@ class BookStoreService(ApiClient):
         
         return self.put(
             url=f"{BOOKS_URL}/{old_isbn}",
-            json=isbn_book_payload(user_id, new_isbn),
+            json=specific_book_payload(user_id, new_isbn),
             headers=auth_header(token),
         )
 
@@ -48,6 +48,6 @@ class BookStoreService(ApiClient):
         
         return self.delete(
             url=BOOK_DETAIL_URL,
-            json=isbn_book_payload(user_id, isbn),
+            json=specific_book_payload(user_id, isbn),
             headers=auth_header(token),
         )
