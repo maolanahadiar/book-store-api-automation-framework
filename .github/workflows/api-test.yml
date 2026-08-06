@@ -13,8 +13,8 @@ on:
   workflow_dispatch:
     
   schedule:
-    # simulate running scheduler
-    - cron: '0 18 * * *'
+    # Schedule running automatically on day 1 of the month
+    - cron: '10 17 1 * *'
 
 env:
   CI: true

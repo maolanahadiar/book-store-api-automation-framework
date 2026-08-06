@@ -7,7 +7,8 @@ import sys
 from config import settings
 
 class AllureHelper:
-
+    """Utility methods for managing Allure test report"""
+    
     @staticmethod
     def create_environment(results_dir):
         """Create environment metadata for Allure report"""
@@ -80,6 +81,8 @@ class AllureHelper:
 
     @staticmethod
     def generate_report(results_dir, report_dir):
+        """Generate Allure report from test results"""
+        
         subprocess.run(
             [
                 "allure",
@@ -94,6 +97,8 @@ class AllureHelper:
 
     @staticmethod
     def open_report(report_dir):
+        """Open Allure report in browser"""
+        
         subprocess.run(
             [
                 "allure",

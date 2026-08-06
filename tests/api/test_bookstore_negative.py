@@ -4,7 +4,7 @@ from testdata.bookstore import BOOKS
 from testdata.credentials import CREDENTIALS
 from testdata.messages import ERROR
         
-@allure.title("User cannot add book without authorization token")
+@allure.title("User cannot add book without token")
 def test_add_book_without_token(book_service):
 
     with allure.step("Send request to add book without token"):
@@ -41,7 +41,7 @@ def test_get_book_invalid_isbn(book_service):
 @allure.title("User cannot add duplicate book")
 def test_add_duplicate_book(book_service):
 
-    with allure.step("Add book as initial data"):
+    with allure.step("Send first request to add book as initial data"):
         first_response = book_service.add_book(
             user_id=CREDENTIALS["user_id"],
             isbn=BOOKS["existing"]["isbn"],
@@ -51,7 +51,7 @@ def test_add_duplicate_book(book_service):
         assert first_response.status_code == HTTPStatus.CREATED
 
     try:
-        with allure.step("Send request to add duplicate book"):
+        with allure.step("Send second request to add same book"):
             second_response = book_service.add_book(
                 user_id=CREDENTIALS["user_id"],
                 isbn=BOOKS["existing"]["isbn"],
@@ -68,7 +68,7 @@ def test_add_duplicate_book(book_service):
             assert body["message"] == ERROR["duplicate_book"]["expected_error_message"]
 
     finally:
-        with allure.step("Remove created book"):
+        with allure.step("Remove first book"):
             book_service.delete_book(
                 user_id=CREDENTIALS["user_id"],
                 isbn=BOOKS["existing"]["isbn"],
@@ -80,7 +80,7 @@ def test_update_invalid_book(book_service):
 
     with allure.step(f"Send request to update book using invalid ISBN {BOOKS["invalid"]["isbn"]}"):
         response = book_service.update_book(
-            old_isbn=BOOKS["existing"]["isbn"],
+            existing_isbn=BOOKS["existing"]["isbn"],
             user_id=CREDENTIALS["user_id"],
             new_isbn=BOOKS["invalid"]["isbn"],
             token=CREDENTIALS["valid_token"],
@@ -95,10 +95,10 @@ def test_update_invalid_book(book_service):
         assert body["code"] == ERROR["invalid_isbn"]["expected_code"]
         assert body["message"] == ERROR["invalid_isbn"]["expected_error_message"]
         
-@allure.title("User cannot delete book without authorization token")
+@allure.title("User cannot delete book using invalid token")
 def test_delete_book_without_token(book_service):
 
-    with allure.step("Send request to delete book without token"):
+    with allure.step("Send request to delete book using invalid token"):
         response = book_service.delete_book(
             user_id=CREDENTIALS["user_id"],
             isbn=BOOKS["new"]["isbn"],

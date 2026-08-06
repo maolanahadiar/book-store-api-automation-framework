@@ -84,22 +84,22 @@ class ApiClient:
         return self.request(
             "POST",
             url,
-            json=json,
             headers=headers,
+            json=json,
         )
 
     def put(self, url, json=None, headers=None):
         return self.request(
             "PUT",
             url,
-            json=json,
             headers=headers,
+            json=json,
         )
 
     def delete(self, url, json=None, headers=None):
         return self.request(
             "DELETE",
             url,
-            json=json,
             headers=headers,
+            json=json,
         )

@@ -78,7 +78,7 @@ def test_update_book_success(book_service):
 
     with allure.step(f"Send request to update ISBN from {BOOKS["existing"]["isbn"]} to {BOOKS["new"]["isbn"]}"):
         response = book_service.update_book(
-            old_isbn=BOOKS["existing"]["isbn"],
+            existing_isbn=BOOKS["existing"]["isbn"],
             user_id=CREDENTIALS["user_id"],
             new_isbn=BOOKS["new"]["isbn"],
             token=CREDENTIALS["valid_token"],

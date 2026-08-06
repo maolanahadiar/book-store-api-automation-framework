@@ -1,0 +1,15 @@
+[32mINFO    [0m AccountService:api_client.py:25 ================================================================================
+[32mINFO    [0m AccountService:api_client.py:26 POST https://demoqa.com/Account/v1/User
+[32mINFO    [0m AccountService:api_client.py:35 Request Body:
+{
+    "userName": "arichardson140213",
+    "password": "!L8xup^#pg#Q"
+}
+[32mINFO    [0m AccountService:api_client.py:54 Status Code : 201
+[32mINFO    [0m AccountService:api_client.py:57 Response Body:
+{
+    "userID": "2c2ffa47-e6ac-4539-aacf-88778cae2e9a",
+    "username": "arichardson140213",
+    "books": []
+}
+[32mINFO    [0m AccountService:api_client.py:67 ================================================================================
